@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  // Wait for the HTML document to be fully loaded and parsed
+  document.addEventListener("DOMContentLoaded", function() {
   /* ----------------------------------------------------------
       🧾 1. Replace Checkout Section with Datastealth Card
   ----------------------------------------------------------- */
@@ -218,6 +220,9 @@
     subtree: true
   });
 
-  console.log("🧠 MutationObserver active. Watching for carousel updates...");
-})();
+console.log("🧠 MutationObserver active. Watching for carousel updates...");
 
+    
+  }); // <-- END OF "DOMContentLoaded" LISTENER
+
+})(); // <-- END OF IIFE
