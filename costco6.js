@@ -6,8 +6,7 @@
   const NEW_LAST4 = "2045";
   const NEW_EXPIRY = "04/27";
   const NEW_CARD_BRAND = "Visa"; // optional, can replace visa/mastercard
-
-  // --- Function to update card info ---
+// --- Function to update card info ---
   function modifyCardInfo(cardContainer) {
     if (!cardContainer) return;
 
@@ -37,25 +36,37 @@
     console.log("✅ Card info replaced with joke values!");
   }
 
-  // --- Observer to monitor DOM changes ---
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      for (const node of mutation.addedNodes) {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          const cardContainer = node.closest("#payment-method-display") || node.querySelector("#payment-method-display");
-          if (cardContainer) modifyCardInfo(cardContainer);
+  // --- Function to initialize observer ---
+  function initCardObserver() {
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const cardContainer =
+              node.closest("#payment-method-display") ||
+              node.querySelector("#payment-method-display");
+            if (cardContainer) modifyCardInfo(cardContainer);
+          }
         }
       }
-    }
-  });
+    });
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
-  // --- Initial check in case it's already rendered ---
-  const existingCard = document.querySelector("#payment-method-display");
-  if (existingCard) modifyCardInfo(existingCard);
+    // --- Initial check in case it's already rendered ---
+    const existingCard = document.querySelector("#payment-method-display");
+    if (existingCard) modifyCardInfo(existingCard);
 
+    console.log("✅ Card observer initialized");
+  }
+
+  // --- Run observer after DOM is ready ---
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    initCardObserver();
+  } else {
+    document.addEventListener("DOMContentLoaded", initCardObserver);
+  }
 })();
