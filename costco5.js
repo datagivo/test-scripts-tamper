@@ -3,7 +3,7 @@
 
   // --- Config ---
   const TEXT_TARGET = "Visa® Card by Citi";
-  const TEXT_REPLACEMENT = "AMEX® Card by Datastealth";
+  const TEXT_REPLACEMENT = "AMEX® Card by DataStealth";
 
   const ORIGINAL_IMAGE_FILENAME = "Costco_Consumer_Visa_k90_1536x969.png";
 
