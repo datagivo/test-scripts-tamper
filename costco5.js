@@ -5,9 +5,6 @@
   const TEXT_TARGET = "Visa® Card by Citi";
   const TEXT_REPLACEMENT = "AMEX® Card by Datastealth";
 
-  // Original image URL to detect
-  const IMAGE_URL = "https://mobilecontent.costco.com/live/resource/img/static-us-landing-pages/Costco_Consumer_Visa_k90_1536x969.png";
-  // Replacement image URL (AMEX logo)
   const IMAGE_REPLACEMENT_URL = "https://icm.aexp-static.com/Internet/internationalcardshop/en_ca/images/cards/Gold_Rewards_Card.png";
 
   // --- Core replace function ---
@@ -24,7 +21,7 @@
 
     // Replace image src for existing <img> elements
     if (node.nodeType === Node.ELEMENT_NODE) {
-      if (node.tagName === "IMG" && node.src === IMAGE_URL) {
+      if (node.tagName === "IMG" && node.src.includes("Costco_Consumer_Visa_k90_1536x969.png")) {
         node.src = IMAGE_REPLACEMENT_URL;
         node.alt = "AMEX Logo"; // optional
         return;
